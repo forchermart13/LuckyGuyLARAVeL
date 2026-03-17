@@ -238,11 +238,7 @@ Add Product
                                    {{ old('status') == 'draft' ? 'checked' : '' }}>
                             <label class="form-check-label" for="status-draft">Draft</label>
                         </div>
-                        <div class="form-check">
-                            <input type="radio" name="status" value="scheduled" id="status-scheduled" class="form-check-input"
-                                   {{ old('status') == 'scheduled' ? 'checked' : '' }}>
-                            <label class="form-check-label" for="status-scheduled">Scheduled</label>
-                        </div>
+                
                     </div>
                     @error('status')
                         <div class="text-danger small">{{ $message }}</div>
