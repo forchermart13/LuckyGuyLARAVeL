@@ -7,6 +7,47 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\UserRegisterController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SubController;
+use App\Http\Controllers\Admin\AddProController;
+use App\Http\Controllers\Admin\CatLookContrloler;
+use App\Http\Controllers\Admin\ReportController;
+
+
+
+
+
+
+
+
+
+// Admin routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/addpro', [App\Http\Controllers\Admin\AddProController::class, 'index'])->name('addpro');
+    Route::post('/addpro/store', [App\Http\Controllers\Admin\AddProController::class, 'store'])->name('addpro.store');
+    Route::get('/products', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products');
+});
+
+
+
+
+// Add these routes in your admin group
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/add-product', [AddProController::class, 'index'])->name('products.create');
+    Route::post('/add-product', [AddProController::class, 'store'])->name('products.store');
+});
+
+Route::post('/admin/products/store', [ProductController::class, 'store'])
+    ->name('admin.products.store');
+
+Route::get('/admin/report', [ReportController::class, 'index'])->name('admin.report');
+Route::get('/admin/settings', [CatLookContrloler::class, 'index'])->name('admin.settings');
+
+Route::get('/admin/product/add', [AddProController::class, 'index'])->name('admin.product.add');
+
+
+
+
+
+
 
 Route::post('/admin/subcategory/store', [SubController::class,'storeSubcategory'])->name('admin.subcategory.store');
 Route::post('/admin/subcategory/store', [SubController::class,'storeSubcategory'])->name('admin.subcategory.store');

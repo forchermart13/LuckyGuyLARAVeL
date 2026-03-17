@@ -14,4 +14,10 @@ class Subcategory extends Model
         'image',
         'status'
     ];
+
+    // Relationship with Category
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

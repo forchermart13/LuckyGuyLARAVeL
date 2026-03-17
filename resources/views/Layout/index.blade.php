@@ -4,11 +4,27 @@
 <meta charset="UTF-8">
 <title>@yield('title')</title>
 <!-- Add in head section -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-<!-- Add before closing body tag -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- jQuery (required for some Bootstrap components) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 <style>
 * {
     margin: 0;
@@ -450,32 +466,32 @@ body::before {
 
 <a href="/admin/products" class="{{ request()->is('admin/products*') ? 'active' : '' }}">
     <i class="fa-solid fa-box"></i>
-    <span>Products</span>
+    <span>Add Products</span>
 </a>
-
+<a href="{{ route('admin.settings') }}" class="{{ request()->is('admin/settings*') ? 'active' : '' }}">
+    <i class="fa-solid fa-layer-group"></i>
+    <span>CAT-LOOK</span>
+</a>
 <a href="{{ route('admin.orders') }}" class="{{ request()->is('admin/orders*') ? 'active' : '' }}">
     <i class="fa-solid fa-cart-shopping"></i>
     <span>Orders</span>
 </a>
-<a href="/admin/customers" class="{{ request()->is('admin/customers*') ? 'active' : '' }}">
+<!-- <a href="/admin/customers" class="{{ request()->is('admin/customers*') ? 'active' : '' }}">
     <i class="fa-solid fa-users"></i>
     <span>Customers</span>
-</a>
+</a> -->
 
-<a href="/admin/coupons" class="{{ request()->is('admin/coupons*') ? 'active' : '' }}">
+<!-- <a href="/admin/coupons" class="{{ request()->is('admin/coupons*') ? 'active' : '' }}">
     <i class="fa-solid fa-tags"></i>
     <span>Coupons</span>
-</a>
+</a> -->
 
-<a href="/admin/analytics" class="{{ request()->is('admin/analytics*') ? 'active' : '' }}">
+
+<a href="{{ route('admin.report') }}" class="{{ request()->is('admin/report*') ? 'active' : '' }}">
     <i class="fa-solid fa-chart-line"></i>
     <span>Analytics</span>
 </a>
 
-<a href="/admin/settings" class="{{ request()->is('admin/settings*') ? 'active' : '' }}">
-    <i class="fa-solid fa-gear"></i>
-    <span>Settings</span>
-</a>
 </div>
 
 <div class="main">

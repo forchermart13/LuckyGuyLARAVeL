@@ -1,0 +1,292 @@
+@extends('Layout.index')
+
+@section('title')
+Add Product
+@endsection
+
+@section('content')
+<div class="container-fluid px-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h4 fw-semibold text-dark">Add New Product</h2>
+        <a href="/admin/products" class="btn btn-secondary">
+            <i class="fa-solid fa-arrow-left me-2"></i>Back to Products
+        </a>
+    </div>
+
+    <!-- Product Form -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form action="#" method="POST" enctype="multipart/form-data">
+                @csrf
+                
+                <div class="row g-4">
+                    <!-- Left Column -->
+                    <div class="col-lg-6">
+                        <!-- Product Name -->
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-dark">
+                                <i class="fa-solid fa-tag me-2 text-primary"></i>Product Name <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="name" class="form-control" placeholder="e.g., Premium Cotton T-Shirt">
+                            <div class="form-text">Maximum 100 characters</div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-dark">
+                                <i class="fa-solid fa-file-lines me-2 text-primary"></i>Description <span class="text-danger">*</span>
+                            </label>
+                            <textarea name="description" rows="5" class="form-control" 
+                                      placeholder="Enter detailed product description, features, benefits, etc..."></textarea>
+                            <div class="form-text">Minimum 50 characters, maximum 1000 characters</div>
+                        </div>
+
+                        <!-- Short Description -->
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-dark">
+                                <i class="fa-solid fa-paragraph me-2 text-primary"></i>Short Description
+                            </label>
+                            <textarea name="short_description" rows="2" class="form-control" 
+                                      placeholder="Brief summary of the product..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-lg-6">
+                        <!-- Main Photo -->
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-dark">
+                                <i class="fa-solid fa-camera me-2 text-primary"></i>Main Product Photo <span class="text-danger">*</span>
+                            </label>
+                            <div class="border border-dashed border-secondary rounded-3 p-4 text-center" 
+                                 style="border-style: dashed !important; cursor: pointer;" 
+                                 onclick="document.getElementById('photo').click()">
+                                <input type="file" name="photo" id="photo" class="d-none" accept="image/*">
+                                <i class="fa-solid fa-cloud-upload-alt fs-1 text-secondary mb-2"></i>
+                                <p class="text-secondary small mb-1">Click to upload main product image</p>
+                                <p class="text-secondary small opacity-75">PNG, JPG, WEBP up to 5MB</p>
+                            </div>
+                            <div id="photo-preview" class="mt-2 d-none">
+                                <img src="#" alt="Preview" class="img-thumbnail" style="height: 128px; width: 128px; object-fit: cover;">
+                            </div>
+                        </div>
+
+                        <!-- Additional Photos -->
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-dark">
+                                <i class="fa-solid fa-images me-2 text-primary"></i>Additional Photos (Up to 5)
+                            </label>
+                            <div class="border border-dashed border-secondary rounded-3 p-4 text-center" 
+                                 style="border-style: dashed !important; cursor: pointer;"
+                                 onclick="document.getElementById('photos').click()">
+                                <input type="file" name="photo02[]" id="photos" class="d-none" multiple accept="image/*">
+                                <i class="fa-solid fa-cloud-upload-alt fs-1 text-secondary mb-2"></i>
+                                <p class="text-secondary small mb-1">Click to upload additional product images</p>
+                                <p class="text-secondary small opacity-75">PNG, JPG, WEBP up to 5MB each</p>
+                            </div>
+                            <div id="additional-photos-preview" class="row g-2 mt-2"></div>
+                        </div>
+
+                        <!-- Sizes - Multiple Choice -->
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-dark">
+                                <i class="fa-solid fa-ruler me-2 text-primary"></i>Available Sizes <span class="text-danger">*</span>
+                            </label>
+                            <div class="form-text mb-2">Select multiple sizes available for this product</div>
+                            
+                            <div class="row g-2">
+                                <!-- Size Checkboxes -->
+                                <div class="col-4 col-sm-3">
+                                    <label class="d-block">
+                                        <input type="checkbox" name="sizes[]" value="XS" class="btn-check" id="size-xs">
+                                        <label class="btn btn-outline-secondary w-100" for="size-xs">XS</label>
+                                    </label>
+                                </div>
+                                
+                                <div class="col-4 col-sm-3">
+                                    <label class="d-block">
+                                        <input type="checkbox" name="sizes[]" value="S" class="btn-check" id="size-s">
+                                        <label class="btn btn-outline-secondary w-100" for="size-s">S</label>
+                                    </label>
+                                </div>
+                                
+                                <div class="col-4 col-sm-3">
+                                    <label class="d-block">
+                                        <input type="checkbox" name="sizes[]" value="M" class="btn-check" id="size-m">
+                                        <label class="btn btn-outline-secondary w-100" for="size-m">M</label>
+                                    </label>
+                                </div>
+                                
+                                <div class="col-4 col-sm-3">
+                                    <label class="d-block">
+                                        <input type="checkbox" name="sizes[]" value="L" class="btn-check" id="size-l">
+                                        <label class="btn btn-outline-secondary w-100" for="size-l">L</label>
+                                    </label>
+                                </div>
+                                
+                                <div class="col-4 col-sm-3">
+                                    <label class="d-block">
+                                        <input type="checkbox" name="sizes[]" value="XL" class="btn-check" id="size-xl">
+                                        <label class="btn btn-outline-secondary w-100" for="size-xl">XL</label>
+                                    </label>
+                                </div>
+                                
+                                <div class="col-4 col-sm-3">
+                                    <label class="d-block">
+                                        <input type="checkbox" name="sizes[]" value="XXL" class="btn-check" id="size-xxl">
+                                        <label class="btn btn-outline-secondary w-100" for="size-xxl">XXL</label>
+                                    </label>
+                                </div>
+                                
+                                <div class="col-4 col-sm-3">
+                                    <label class="d-block">
+                                        <input type="checkbox" name="sizes[]" value="3XL" class="btn-check" id="size-3xl">
+                                        <label class="btn btn-outline-secondary w-100" for="size-3xl">3XL</label>
+                                    </label>
+                                </div>
+                                
+                                <div class="col-4 col-sm-3">
+                                    <label class="d-block">
+                                        <input type="checkbox" name="sizes[]" value="4XL" class="btn-check" id="size-4xl">
+                                        <label class="btn btn-outline-secondary w-100" for="size-4xl">4XL</label>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Size Guide Link -->
+                            <div class="mt-2">
+                                <a href="#" class="text-primary small text-decoration-none">
+                                    <i class="fa-solid fa-ruler-combined me-1"></i>View Size Guide
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Fields Row -->
+                <div class="row g-3 mt-2">
+                    <!-- Price -->
+                    <div class="col-md-6 col-lg-3">
+                        <label class="form-label fw-medium text-dark">
+                            <i class="fa-solid fa-dollar-sign me-2 text-primary"></i>Price <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" name="price" step="0.01" class="form-control" placeholder="0.00">
+                        </div>
+                    </div>
+
+                    <!-- Compare Price -->
+                    <div class="col-md-6 col-lg-3">
+                        <label class="form-label fw-medium text-dark">
+                            <i class="fa-solid fa-tags me-2 text-primary"></i>Compare at Price
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" name="compare_price" step="0.01" class="form-control" placeholder="0.00">
+                        </div>
+                    </div>
+
+ 
+                </div>
+
+                <!-- Categories and Tags -->
+                <div class="row g-3 mt-3">
+                    <!-- subcategories-->
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium text-dark">
+                            <i class="fa-solid fa-folder me-2 text-primary"></i>subcategories<span class="text-danger">*</span>
+                        </label>
+                        <select name="category" class="form-select">
+                            <option value="">Select a SubCategory </option>
+                            <option value="clothing">Clothing</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="accessories">Accessories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="home">Home & Living</option>
+                        </select>
+                    </div>
+
+      
+                </div>
+
+                <!-- Product Status -->
+                <div class="mt-4 p-3 bg-light rounded">
+                    <h6 class="fw-medium text-dark mb-3">
+                        <i class="fa-solid fa-toggle-on me-2 text-primary"></i>Product Status
+                    </h6>
+                    <div class="d-flex gap-4">
+                        <div class="form-check">
+                            <input type="radio" name="status" value="active" id="status-active" class="form-check-input" checked>
+                            <label class="form-check-label" for="status-active">Active</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="status" value="draft" id="status-draft" class="form-check-input">
+                            <label class="form-check-label" for="status-draft">Draft</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="status" value="scheduled" id="status-scheduled" class="form-check-input">
+                            <label class="form-check-label" for="status-scheduled">Scheduled</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="d-flex justify-content-end gap-2 mt-4 pt-4 border-top">
+                    <button type="reset" class="btn btn-outline-secondary px-4">
+                        Reset
+                    </button>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fa-solid fa-save me-2"></i>Save Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Image Preview -->
+<script>
+    // Main photo preview
+    document.getElementById('photo').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('photo-preview');
+                preview.classList.remove('d-none');
+                preview.querySelector('img').src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Additional photos preview
+    document.getElementById('photos').addEventListener('change', function(e) {
+        const files = e.target.files;
+        const preview = document.getElementById('additional-photos-preview');
+        preview.innerHTML = '';
+        
+        for (let i = 0; i < files.length; i++) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const col = document.createElement('div');
+                col.className = 'col-auto';
+                col.innerHTML = `
+                    <div class="position-relative">
+                        <img src="${e.target.result}" class="rounded" style="height: 80px; width: 80px; object-fit: cover;">
+                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 p-0" 
+                                style="transform: translate(50%, -50%); width: 20px; height: 20px; font-size: 10px;"
+                                onclick="this.closest('.col-auto').remove()">
+                            <i class="fa-solid fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                preview.appendChild(col);
+            }
+            reader.readAsDataURL(files[i]);
+        }
+    });
+</script>
+@endsection

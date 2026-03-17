@@ -23,7 +23,7 @@ class SubController extends Controller
         $request->validate([
             'category_id' => 'required',
             'name' => 'required',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:11048',
             'status' => 'required'
         ]);
 
